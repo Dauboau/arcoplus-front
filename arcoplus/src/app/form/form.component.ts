@@ -1,11 +1,12 @@
 import { Component, ElementRef, inject, OnInit, Pipe, TemplateRef, ViewChild } from '@angular/core';
 import { NavbarComponent } from "../components/navbar/navbar.component";
 import { PipefyService } from '../services/pipefy.service';
-import { FormControl, FormGroup, ReactiveFormsModule } from '@angular/forms';
+import { FormControl, FormGroup, ReactiveFormsModule, Validators } from '@angular/forms';
 import { ActivatedRoute } from '@angular/router';
 import { ToastrService } from 'ngx-toastr';
 import { NgbActiveModal, NgbModal, NgbModule } from '@ng-bootstrap/ng-bootstrap';
 import Swal from 'sweetalert2'
+import { BrowserModule } from '@angular/platform-browser';
 
 const defaultValue:Number = 0;
 
@@ -22,8 +23,6 @@ export class FormComponent implements OnInit {
   constructor(
     private activatedRoute: ActivatedRoute,
     private pipefyService: PipefyService,
-    private notificationService: ToastrService,
-    private modalService: NgbModal
   ){}
 
   confirmFormGroup = new FormGroup({
@@ -57,16 +56,18 @@ export class FormComponent implements OnInit {
           allowEscapeKey: false,
           allowEnterKey: false,
         })
-      }
+      }else{
 
-      this.confirmFormGroup.patchValue({
-        nG4: params['nG4'] || defaultValue,
-        nG5: params['nG5'] || defaultValue,
-        n1F: params['n1F'] || defaultValue,
-        n2F: params['n2F'] || defaultValue,
-        n3F: params['n3F'] || defaultValue,
-        n4F: params['n4F'] || defaultValue,
-      })
+        this.confirmFormGroup.patchValue({
+          nG4: Number(params['nG4']),
+          nG5: Number(params['nG5']),
+          n1F: Number(params['n1F']),
+          n2F: Number(params['n2F']),
+          n3F: Number(params['n3F']),
+          n4F: Number(params['n4F'])
+        });
+
+      }
 
     });
 
@@ -84,5 +85,7 @@ export class FormComponent implements OnInit {
   onSubmit(){
 
   }
+
+  
 
 }
