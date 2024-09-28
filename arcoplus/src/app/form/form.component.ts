@@ -3,17 +3,12 @@ import { NavbarComponent } from "../components/navbar/navbar.component";
 import { PipefyService } from '../services/pipefy.service';
 import { FormControl, FormGroup, ReactiveFormsModule, Validators } from '@angular/forms';
 import { ActivatedRoute } from '@angular/router';
-import { ToastrService } from 'ngx-toastr';
-import { NgbActiveModal, NgbModal, NgbModule } from '@ng-bootstrap/ng-bootstrap';
 import Swal from 'sweetalert2'
-import { BrowserModule } from '@angular/platform-browser';
-
-const defaultValue:Number = 0;
 
 @Component({
   selector: 'app-form',
   standalone: true,
-  imports: [NavbarComponent,ReactiveFormsModule,NgbModule],
+  imports: [NavbarComponent,ReactiveFormsModule],
   templateUrl: './form.component.html',
   styleUrl: './form.component.css'
 })
@@ -22,17 +17,24 @@ export class FormComponent implements OnInit {
 
   constructor(
     private activatedRoute: ActivatedRoute,
-    private pipefyService: PipefyService,
+    private pipefyService: PipefyService
   ){}
+
+  nG4: Number = 0;
+  nG5: Number = 0;
+  n1F: Number = 0;
+  n2F: Number = 0;
+  n3F: Number = 0;
+  n4F: Number = 0;
 
   confirmFormGroup = new FormGroup({
     email: new FormControl(''),
-    nG4: new FormControl(defaultValue),
-    nG5: new FormControl(defaultValue),
-    n1F: new FormControl(defaultValue),
-    n2F: new FormControl(defaultValue),
-    n3F: new FormControl(defaultValue),
-    n4F: new FormControl(defaultValue),
+    nG4: new FormControl(this.nG4),
+    nG5: new FormControl(this.nG5),
+    n1F: new FormControl(this.n1F),
+    n2F: new FormControl(this.n2F),
+    n3F: new FormControl(this.n3F),
+    n4F: new FormControl(this.n4F),
   });
 
   ngOnInit() {
@@ -58,6 +60,13 @@ export class FormComponent implements OnInit {
         })
       }else{
 
+        this.nG4 = Number(params['nG4']);
+        this.nG5 = Number(params['nG5']);
+        this.n1F = Number(params['n1F']);
+        this.n2F = Number(params['n2F']);
+        this.n3F = Number(params['n3F']);
+        this.n4F = Number(params['n4F']);
+
         this.confirmFormGroup.patchValue({
           nG4: Number(params['nG4']),
           nG5: Number(params['nG5']),
@@ -71,6 +80,7 @@ export class FormComponent implements OnInit {
 
     });
 
+    /*
     this.pipefyService.testApi().subscribe({
       next: (data) => {
         console.log(data)
@@ -79,6 +89,7 @@ export class FormComponent implements OnInit {
         console.log(error)
       }
     })
+    */
 
   }
 
