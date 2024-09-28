@@ -1,0 +1,91 @@
+
+<app-navbar></app-navbar>
+
+<main>
+
+    <form [formGroup] = "confirmFormGroup" (ngSubmit)="onSubmit()" ngNativeValidate>
+
+        <h1 id="formTitle" class="mb-3">Confirme o seu número de alunos</h1>
+
+        <div class="mb-3">
+            <label for="emailInput" class="form-label">Por favor, informe o seu e-mail para receber a confirmação do seu pedido</label>
+            <input 
+                type="email" 
+                class="form-control" 
+                id="emailInput"
+                formControlName="email"
+                required
+            >
+        </div>
+
+        <div class="mb-3">
+            <label for="G4Input" class="form-label">Confirme o número de alunos do G4</label>
+            <input 
+                type="number" 
+                class="form-control" 
+                id="G4Input"
+                formControlName="nG4"
+                required
+            >
+        </div>
+
+        <div class="mb-3">
+            <label for="G5Input" class="form-label">Confirme o número de alunos do G5</label>
+            <input 
+                type="number" 
+                class="form-control" 
+                id="G5Input"
+                formControlName="nG5"
+                required
+            >
+        </div>
+
+        <div class="mb-3">
+            <label for="1FInput" class="form-label">Confirme o número de alunos do G5</label>
+            <input 
+                type="number" 
+                class="form-control" 
+                id="1FInput"
+                formControlName="n1F"
+                required
+            >
+        </div>
+
+        <div class="mb-3">
+            <label for="2FInput" class="form-label">Confirme o número de alunos do G5</label>
+            <input 
+                type="number" 
+                class="form-control" 
+                id="2FInput"
+                formControlName="n2F"
+                required
+            >
+        </div>
+
+        <div class="mb-3">
+            <label for="3FInput" class="form-label">Confirme o número de alunos do G5</label>
+            <input 
+                type="number" 
+                class="form-control" 
+                id="3FInput"
+                formControlName="n3F"
+                required
+            >
+        </div>
+
+        <div class="mb-3">
+            <label for="4FInput" class="form-label">Confirme o número de alunos do G5</label>
+            <input 
+                type="number" 
+                class="form-control" 
+                id="4FInput"
+                formControlName="n4F"
+                required
+            >
+        </div>
+
+        <button id="submitButton" type="submit" class="btn">Enviar Pedido!</button>
+
+      </form>
+    
+</main>
