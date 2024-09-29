@@ -11,17 +11,10 @@ export class PipefyService {
     private http: HttpClient
   ) { }
 
-  private authentication(){
-    const headers = { 'Authorization': `Bearer ${environment.personalToken}` }
-    return {headers};
-  }
-
-  testApi(){
-
-    return this.http.post(environment.urlPipefy,{
-      query: '{ me { id email } }'
-    }, this.authentication())
-
+  createCard(){
+    return this.http.post(environment.url,{
+      
+    })
   }
 
 }

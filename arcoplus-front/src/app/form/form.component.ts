@@ -4,6 +4,7 @@ import { PipefyService } from '../services/pipefy.service';
 import { FormControl, FormGroup, ReactiveFormsModule, Validators } from '@angular/forms';
 import { ActivatedRoute } from '@angular/router';
 import Swal from 'sweetalert2'
+import { pipe } from 'rxjs';
 
 @Component({
   selector: 'app-form',
@@ -92,27 +93,26 @@ export class FormComponent implements OnInit {
 
   onSubmit(){
 
-    console.log("teste");
-    console.log(this.confirmFormGroup.valid);
-
     if(!this.confirmFormGroup.valid){
       this.inconsistencyAlert();
+    }else{
+      this.sendData();
     }
-
-    /*
-    this.pipefyService.testApi().subscribe({
-      next: (data) => {
-        console.log(data)
-      },
-      error: (error) => {
-        console.log(error)
-      }
-    })
-    */
 
   }
 
   private sendData(){
+
+    this.pipefyService.createCard().subscribe({
+      next: (data) => {
+        console.log(data)
+      },
+      error: (error) => {
+        Swal.showValidationMessage(`
+          Request failed: ${error}
+        `);
+      }
+    })
 
   }
 
