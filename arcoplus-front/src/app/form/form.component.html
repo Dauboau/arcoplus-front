@@ -26,9 +26,15 @@
                 id="G4Input"
                 formControlName="nG4"
                 required
-                [min]="+this.nG4"
+                min="0"
             >
         </div>
+
+        @if(this.confirmFormGroup.value.nG4 && this.confirmFormGroup.value.nG4 < this.nG4) {
+            <div class="alert alert-warning p-2" role="alert">
+                O número de alunos do G4 informado é menor que o número mínimo de alunos definido contratualmente.
+            </div>
+        }
 
         <div class="mb-3">
             <label for="G5Input" class="form-label">Confirme o número de alunos do G5</label>
@@ -38,9 +44,15 @@
                 id="G5Input"
                 formControlName="nG5"
                 required
-                [min]="+this.nG5"
+                min="0"
             >
         </div>
+
+        @if(this.confirmFormGroup.value.nG5 && this.confirmFormGroup.value.nG5 < this.nG5) {
+            <div class="alert alert-warning p-2" role="alert">
+                O número de alunos do G5 informado é menor que o número mínimo de alunos definido contratualmente.
+            </div>
+        }
 
         <div class="mb-3">
             <label for="1FInput" class="form-label">Confirme o número de alunos do 1F</label>
@@ -50,9 +62,15 @@
                 id="1FInput"
                 formControlName="n1F"
                 required
-                [min]="+this.n1F"
+                min="0"
             >
         </div>
+
+        @if(this.confirmFormGroup.value.n1F && this.confirmFormGroup.value.n1F < this.n1F) {
+            <div class="alert alert-warning p-2" role="alert">
+                O número de alunos do 1F informado é menor que o número mínimo de alunos definido contratualmente.
+            </div>
+        }
 
         <div class="mb-3">
             <label for="2FInput" class="form-label">Confirme o número de alunos do 2F</label>
@@ -62,9 +80,15 @@
                 id="2FInput"
                 formControlName="n2F"
                 required
-                [min]="+this.n2F"
+                min="0"
             >
         </div>
+
+        @if(this.confirmFormGroup.value.n2F && this.confirmFormGroup.value.n2F < this.n2F) {
+            <div class="alert alert-warning p-2" role="alert">
+                O número de alunos do 2F informado é menor que o número mínimo de alunos definido contratualmente.
+            </div>
+        }
 
         <div class="mb-3">
             <label for="3FInput" class="form-label">Confirme o número de alunos do 3F</label>
@@ -74,9 +98,15 @@
                 id="3FInput"
                 formControlName="n3F"
                 required
-                [min]="+this.n3F"
+                min="0"
             >
         </div>
+
+        @if(this.confirmFormGroup.value.n3F && this.confirmFormGroup.value.n3F < this.n3F) {
+            <div class="alert alert-warning p-2" role="alert">
+                O número de alunos do 3F informado é menor que o número mínimo de alunos definido contratualmente.
+            </div>
+        }
 
         <div class="mb-3">
             <label for="4FInput" class="form-label">Confirme o número de alunos do 4F</label>
@@ -86,9 +116,17 @@
                 id="4FInput"
                 formControlName="n4F"
                 required
-                [min]="+this.n4F"
+                min="0"
             >
         </div>
+
+        @if(this.confirmFormGroup.value.n4F && this.confirmFormGroup.value.n4F < this.n4F) {
+            <div class="alert alert-warning p-2" role="alert">
+                O número de alunos do 4F informado é menor que o número mínimo de alunos definido contratualmente.
+            </div>
+        }
+
+        <!-- [min]="this.n4F" -->
 
         <button id="submitButton" type="submit" class="btn">Enviar Pedido!</button>
 

@@ -20,21 +20,21 @@ export class FormComponent implements OnInit {
     private pipefyService: PipefyService
   ){}
 
-  nG4: Number = 0;
-  nG5: Number = 0;
-  n1F: Number = 0;
-  n2F: Number = 0;
-  n3F: Number = 0;
-  n4F: Number = 0;
+  nG4: number = 0;
+  nG5: number = 0;
+  n1F: number = 0;
+  n2F: number = 0;
+  n3F: number = 0;
+  n4F: number = 0;
 
   confirmFormGroup = new FormGroup({
     email: new FormControl(''),
-    nG4: new FormControl(this.nG4),
-    nG5: new FormControl(this.nG5),
-    n1F: new FormControl(this.n1F),
-    n2F: new FormControl(this.n2F),
-    n3F: new FormControl(this.n3F),
-    n4F: new FormControl(this.n4F),
+    nG4: new FormControl(this.nG4, [Validators.min(this.nG4)]),
+    nG5: new FormControl(this.nG5, [Validators.min(this.nG4)]),
+    n1F: new FormControl(this.n1F, [Validators.min(this.nG4)]),
+    n2F: new FormControl(this.n2F, [Validators.min(this.nG4)]),
+    n3F: new FormControl(this.n3F, [Validators.min(this.nG4)]),
+    n4F: new FormControl(this.n4F, [Validators.min(this.nG4)]),
   });
 
   ngOnInit() {
@@ -50,7 +50,7 @@ export class FormComponent implements OnInit {
       ){
         Swal.fire({
           title: "URL Inválida",
-          icon:"warning",
+          icon:"error",
           text: "Por favor, verifique o link e tente novamente.",
           showConfirmButton: false,
           showCloseButton: false,
@@ -76,9 +76,28 @@ export class FormComponent implements OnInit {
           n4F: Number(params['n4F'])
         });
 
+        this.confirmFormGroup.controls['nG4'].addValidators([Validators.min(this.nG4)]);
+        this.confirmFormGroup.controls['nG5'].addValidators([Validators.min(this.nG5)]);
+        this.confirmFormGroup.controls['n1F'].addValidators([Validators.min(this.n1F)]);
+        this.confirmFormGroup.controls['n2F'].addValidators([Validators.min(this.n2F)]);
+        this.confirmFormGroup.controls['n3F'].addValidators([Validators.min(this.n3F)]);
+        this.confirmFormGroup.controls['n4F'].addValidators([Validators.min(this.n4F)]);
+        this.confirmFormGroup.updateValueAndValidity();
+
       }
 
     });
+
+  }
+
+  onSubmit(){
+
+    console.log("teste");
+    console.log(this.confirmFormGroup.valid);
+
+    if(!this.confirmFormGroup.valid){
+      this.inconsistencyAlert();
+    }
 
     /*
     this.pipefyService.testApi().subscribe({
@@ -93,10 +112,32 @@ export class FormComponent implements OnInit {
 
   }
 
-  onSubmit(){
+  private sendData(){
 
   }
 
-  
+  private inconsistencyAlert(){
+
+    Swal.fire({
+      title: "Valores Inconsistentes",
+      icon:"warning",
+      iconColor: "#e4452e",
+      text: "Por favor verifique os valores inseridos e o número de alunos previsto em contrato antes de prosseguir.",
+      showConfirmButton: true,
+      confirmButtonText: "Prosseguir",
+      confirmButtonColor: "#4381c0",
+      showCancelButton: true,
+      cancelButtonText: "Cancelar",
+      cancelButtonColor: "#e4452e",
+      showCloseButton: false,
+      allowOutsideClick: true,
+      allowEscapeKey: true,
+    }).then((result) => {
+      if(result.isConfirmed){
+        this.sendData();
+      }
+    })
+
+  }
 
 }
