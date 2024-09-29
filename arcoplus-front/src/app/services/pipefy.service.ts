@@ -12,8 +12,8 @@ export class PipefyService {
   ) { }
 
   createCard(){
-    return this.http.post(environment.url,{
-      
+    return this.http.post(environment.url + "/createCard",{
+      teste: 'teste'
     })
   }
 

@@ -105,12 +105,22 @@ export class FormComponent implements OnInit {
 
     this.pipefyService.createCard().subscribe({
       next: (data) => {
-        console.log(data)
+        Swal.fire({
+          title: "Sucesso",
+          icon:"success",
+          text: "O formulário foi enviado!",
+          showConfirmButton: false,
+          showCloseButton: true,
+        })
       },
       error: (error) => {
-        Swal.showValidationMessage(`
-          Request failed: ${error}
-        `);
+        Swal.fire({
+          title: "Erro " + error.status + ": " + error.statusText,
+          icon:"error",
+          text: "Ocorreu um erro. Por favor, tente novamente.",
+          showConfirmButton: false,
+          showCloseButton: true,
+        })
       }
     })
 
